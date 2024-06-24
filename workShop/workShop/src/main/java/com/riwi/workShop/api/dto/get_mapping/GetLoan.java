@@ -1,5 +1,6 @@
-package com.riwi.workShop.api.dto.response;
+package com.riwi.workShop.api.dto.get_mapping;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 
 import com.riwi.workShop.domain.entities.Book;
@@ -11,15 +12,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class GetReservation {
+public class GetLoan {
     
     private Long id;
-    private LocalDateTime reservationDate;
-    private boolean status;
-    private UserEntity reservationUserEntity;
-    private Book reservationBook;
+    private Date loanDate;
+    private LocalDateTime returnDate;
+    private String status;
+    private UserEntity loanUserEntity;
+    private Book loanBook;
 
 }

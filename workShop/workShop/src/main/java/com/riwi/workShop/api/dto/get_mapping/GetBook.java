@@ -1,5 +1,5 @@
-package com.riwi.workShop.api.dto.response;
-    
+package com.riwi.workShop.api.dto.get_mapping;
+
 import java.util.List;
 
 import com.riwi.workShop.domain.entities.Loan;
@@ -14,15 +14,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class GetUser {
-
+public class GetBook {
+    
     private Long id;
-    private String username;
-    private String password;
-    private String email;
-    private String fullName;
-    private String role;
+    private String title;
+    private String author;
+    private int publicationYear;
+    private String genre;
+    private String isbn;
     private List<Loan> loan;
     private List<Reservation> reservation;
-
 }

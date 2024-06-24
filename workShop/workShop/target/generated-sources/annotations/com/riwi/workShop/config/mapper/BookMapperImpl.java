@@ -1,6 +1,6 @@
 package com.riwi.workShop.config.mapper;
 
-import com.riwi.workShop.api.dto.response.GetBook;
+import com.riwi.workShop.api.dto.get_mapping.GetBook;
 import com.riwi.workShop.domain.entities.Book;
 import com.riwi.workShop.domain.entities.Loan;
 import com.riwi.workShop.domain.entities.Reservation;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-06-21T11:27:50-0500",
+    date = "2024-06-24T10:38:25-0500",
     comments = "version: 1.6.0.Beta2, compiler: Eclipse JDT (IDE) 3.38.0.v20240524-2033, environment: Java 17.0.11 (Eclipse Adoptium)"
 )
 @Component

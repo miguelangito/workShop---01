@@ -6,7 +6,7 @@ import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 
-import com.riwi.workShop.api.dto.response.GetUser;
+import com.riwi.workShop.api.dto.get_mapping.GetUser;
 import com.riwi.workShop.domain.entities.UserEntity;
 
 

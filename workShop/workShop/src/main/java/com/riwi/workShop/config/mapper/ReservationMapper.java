@@ -6,7 +6,7 @@ import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 
-import com.riwi.workShop.api.dto.response.GetReservation;
+import com.riwi.workShop.api.dto.get_mapping.GetReservation;
 import com.riwi.workShop.domain.entities.Reservation;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
