@@ -2,7 +2,6 @@ package com.riwi.workShop.config.mapper;
 
 import java.util.List;
 
-import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 
@@ -15,7 +14,6 @@ public interface LoanMapper {
     
     LoanResponse loanToLoanResponse(Loan loan);
 
-    @InheritInverseConfiguration
     Loan loanRequestToEntity(LoanRequest loanRequest);
 
     List<LoanResponse> toGetLoanList(List<Loan> loanList);

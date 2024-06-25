@@ -2,23 +2,22 @@ package com.riwi.workShop.config.mapper;
 
 import java.util.List;
 
-import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 
-import com.riwi.workShop.api.dto.get_mapping.GetBook;
+import com.riwi.workShop.api.dto.request.BookRequest;
+import com.riwi.workShop.api.dto.response.BookResponse;
 import com.riwi.workShop.domain.entities.Book;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface BookMapper {
     
-    GetBook toGetBook(Book book);
+    BookResponse bookToBookResponse(Book book);
 
-    @InheritInverseConfiguration
-    Book toEntity(GetBook getBook);
+    Book bookRequestToEntity(BookRequest bookRequest);
 
-    List<GetBook> toGetBookList(List<Book> bookList);
+    List<BookResponse> toGetBookList(List<Book> bookList);
 
-    List<Book> toEntityList(List<GetBook> getBookList);
+    List<Book> toEntityList(List<BookResponse> getBookList);
 
 }

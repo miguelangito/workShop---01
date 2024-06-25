@@ -2,7 +2,6 @@ package com.riwi.workShop.config.mapper;
 
 import java.util.List;
 
-import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 
@@ -16,7 +15,6 @@ public interface UserMapper {
 
     UserResponse userToUserResponse(UserEntity userEntity);
 
-    @InheritInverseConfiguration
     UserEntity UserRequestToEntity(UserRequest getUser);
 
     List<UserResponse> toGetUserList(List<UserEntity> userList);
