@@ -6,18 +6,19 @@ import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 
-import com.riwi.workShop.api.dto.get_mapping.GetLoan;
+import com.riwi.workShop.api.dto.request.LoanRequest;
+import com.riwi.workShop.api.dto.response.LoanResponse;
 import com.riwi.workShop.domain.entities.Loan;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface LoanMapper {
     
-    GetLoan toGetLoan(Loan loan);
+    LoanResponse loanToLoanResponse(Loan loan);
 
     @InheritInverseConfiguration
-    Loan toEntity(GetLoan getLoan);
+    Loan loanRequestToEntity(LoanRequest loanRequest);
 
-    List<GetLoan> toGetLoanList(List<Loan> loanList);
+    List<LoanResponse> toGetLoanList(List<Loan> loanList);
 
-    List<Loan> toEntityList(List<GetLoan> getLoanList);
+    List<Loan> toEntityList(List<LoanResponse> getLoanList);
 }

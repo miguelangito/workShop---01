@@ -1,6 +1,7 @@
 package com.riwi.workShop.config.mapper;
 
-import com.riwi.workShop.api.dto.get_mapping.GetUser;
+import com.riwi.workShop.api.dto.request.UserRequest;
+import com.riwi.workShop.api.dto.response.UserResponse;
 import com.riwi.workShop.domain.entities.Loan;
 import com.riwi.workShop.domain.entities.Reservation;
 import com.riwi.workShop.domain.entities.UserEntity;
@@ -11,89 +12,99 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-06-24T10:38:32-0500",
+    date = "2024-06-25T09:02:03-0500",
     comments = "version: 1.6.0.Beta2, compiler: Eclipse JDT (IDE) 3.38.0.v20240524-2033, environment: Java 17.0.11 (Eclipse Adoptium)"
 )
 @Component
 public class UserMapperImpl implements UserMapper {
 
     @Override
-    public GetUser toGetUser(UserEntity userEntity) {
+    public UserResponse userToUserResponse(UserEntity userEntity) {
         if ( userEntity == null ) {
             return null;
         }
 
-        GetUser.GetUserBuilder getUser = GetUser.builder();
+        UserResponse.UserResponseBuilder userResponse = UserResponse.builder();
 
-        getUser.email( userEntity.getEmail() );
-        getUser.fullName( userEntity.getFullName() );
-        getUser.id( userEntity.getId() );
+        userResponse.email( userEntity.getEmail() );
+        userResponse.fullName( userEntity.getFullName() );
+        userResponse.id( userEntity.getId() );
         List<Loan> list = userEntity.getLoan();
         if ( list != null ) {
-            getUser.loan( new ArrayList<Loan>( list ) );
+            userResponse.loan( new ArrayList<Loan>( list ) );
         }
-        getUser.password( userEntity.getPassword() );
+        userResponse.password( userEntity.getPassword() );
         List<Reservation> list1 = userEntity.getReservation();
         if ( list1 != null ) {
-            getUser.reservation( new ArrayList<Reservation>( list1 ) );
+            userResponse.reservation( new ArrayList<Reservation>( list1 ) );
         }
-        getUser.role( userEntity.getRole() );
-        getUser.username( userEntity.getUsername() );
+        userResponse.role( userEntity.getRole() );
+        userResponse.username( userEntity.getUsername() );
 
-        return getUser.build();
+        return userResponse.build();
     }
 
     @Override
-    public UserEntity toEntity(GetUser getUser) {
+    public UserEntity UserRequestToEntity(UserRequest getUser) {
         if ( getUser == null ) {
             return null;
         }
 
         UserEntity.UserEntityBuilder userEntity = UserEntity.builder();
 
-        userEntity.email( getUser.getEmail() );
-        userEntity.fullName( getUser.getFullName() );
-        userEntity.id( getUser.getId() );
-        List<Loan> list = getUser.getLoan();
-        if ( list != null ) {
-            userEntity.loan( new ArrayList<Loan>( list ) );
-        }
-        userEntity.password( getUser.getPassword() );
-        List<Reservation> list1 = getUser.getReservation();
-        if ( list1 != null ) {
-            userEntity.reservation( new ArrayList<Reservation>( list1 ) );
-        }
-        userEntity.role( getUser.getRole() );
-        userEntity.username( getUser.getUsername() );
-
         return userEntity.build();
     }
 
     @Override
-    public List<GetUser> toGetUserList(List<UserEntity> userList) {
+    public List<UserResponse> toGetUserList(List<UserEntity> userList) {
         if ( userList == null ) {
             return null;
         }
 
-        List<GetUser> list = new ArrayList<GetUser>( userList.size() );
+        List<UserResponse> list = new ArrayList<UserResponse>( userList.size() );
         for ( UserEntity userEntity : userList ) {
-            list.add( toGetUser( userEntity ) );
+            list.add( userToUserResponse( userEntity ) );
         }
 
         return list;
     }
 
     @Override
-    public List<UserEntity> toEntityList(List<GetUser> getUserList) {
+    public List<UserEntity> toEntityList(List<UserResponse> getUserList) {
         if ( getUserList == null ) {
             return null;
         }
 
         List<UserEntity> list = new ArrayList<UserEntity>( getUserList.size() );
-        for ( GetUser getUser : getUserList ) {
-            list.add( toEntity( getUser ) );
+        for ( UserResponse userResponse : getUserList ) {
+            list.add( userResponseToUserEntity( userResponse ) );
         }
 
         return list;
+    }
+
+    protected UserEntity userResponseToUserEntity(UserResponse userResponse) {
+        if ( userResponse == null ) {
+            return null;
+        }
+
+        UserEntity.UserEntityBuilder userEntity = UserEntity.builder();
+
+        userEntity.email( userResponse.getEmail() );
+        userEntity.fullName( userResponse.getFullName() );
+        userEntity.id( userResponse.getId() );
+        List<Loan> list = userResponse.getLoan();
+        if ( list != null ) {
+            userEntity.loan( new ArrayList<Loan>( list ) );
+        }
+        userEntity.password( userResponse.getPassword() );
+        List<Reservation> list1 = userResponse.getReservation();
+        if ( list1 != null ) {
+            userEntity.reservation( new ArrayList<Reservation>( list1 ) );
+        }
+        userEntity.role( userResponse.getRole() );
+        userEntity.username( userResponse.getUsername() );
+
+        return userEntity.build();
     }
 }
