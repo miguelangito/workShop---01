@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-06-25T11:12:13-0500",
-    comments = "version: 1.6.0.Beta2, compiler: javac, environment: Java 17.0.6 (Oracle Corporation)"
+    date = "2024-07-08T10:47:18-0500",
+    comments = "version: 1.6.0.Beta2, compiler: Eclipse JDT (IDE) 3.39.0.v20240620-1855, environment: Java 17.0.11 (Eclipse Adoptium)"
 )
 @Component
 public class BookMapperImpl implements BookMapper {
@@ -26,20 +26,20 @@ public class BookMapperImpl implements BookMapper {
 
         BookResponse.BookResponseBuilder bookResponse = BookResponse.builder();
 
-        bookResponse.id( book.getId() );
-        bookResponse.title( book.getTitle() );
         bookResponse.author( book.getAuthor() );
-        bookResponse.publicationYear( book.getPublicationYear() );
         bookResponse.genre( book.getGenre() );
+        bookResponse.id( book.getId() );
         bookResponse.isbn( book.getIsbn() );
         List<Loan> list = book.getLoan();
         if ( list != null ) {
             bookResponse.loan( new ArrayList<Loan>( list ) );
         }
+        bookResponse.publicationYear( book.getPublicationYear() );
         List<Reservation> list1 = book.getReservation();
         if ( list1 != null ) {
             bookResponse.reservation( new ArrayList<Reservation>( list1 ) );
         }
+        bookResponse.title( book.getTitle() );
 
         return bookResponse.build();
     }
@@ -52,11 +52,11 @@ public class BookMapperImpl implements BookMapper {
 
         Book.BookBuilder book = Book.builder();
 
-        book.title( bookRequest.getTitle() );
         book.author( bookRequest.getAuthor() );
-        book.publicationYear( bookRequest.getPublicationYear() );
         book.genre( bookRequest.getGenre() );
         book.isbn( bookRequest.getIsbn() );
+        book.publicationYear( bookRequest.getPublicationYear() );
+        book.title( bookRequest.getTitle() );
 
         return book.build();
     }
@@ -96,20 +96,20 @@ public class BookMapperImpl implements BookMapper {
 
         Book.BookBuilder book = Book.builder();
 
-        book.id( bookResponse.getId() );
-        book.title( bookResponse.getTitle() );
         book.author( bookResponse.getAuthor() );
-        book.publicationYear( bookResponse.getPublicationYear() );
         book.genre( bookResponse.getGenre() );
+        book.id( bookResponse.getId() );
         book.isbn( bookResponse.getIsbn() );
         List<Loan> list = bookResponse.getLoan();
         if ( list != null ) {
             book.loan( new ArrayList<Loan>( list ) );
         }
+        book.publicationYear( bookResponse.getPublicationYear() );
         List<Reservation> list1 = bookResponse.getReservation();
         if ( list1 != null ) {
             book.reservation( new ArrayList<Reservation>( list1 ) );
         }
+        book.title( bookResponse.getTitle() );
 
         return book.build();
     }
