@@ -2,9 +2,6 @@ package com.riwi.workShop.api.dto.response;
 
 import java.util.List;
 
-import com.riwi.workShop.domain.entities.Loan;
-import com.riwi.workShop.domain.entities.Reservation;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,6 +19,6 @@ public class BookResponse {
     private int publicationYear;
     private String genre;
     private String isbn;
-    private List<Loan> loan;
-    private List<Reservation> reservation;
+    private List<LoanResponseEmpty> loan;
+    private List<ReservationResponseEmpty> reservation;
 }

@@ -1,6 +1,8 @@
 package com.riwi.workShop.config.mapper;
 
 import com.riwi.workShop.api.dto.request.UserRequest;
+import com.riwi.workShop.api.dto.response.LoanResponseEmpty;
+import com.riwi.workShop.api.dto.response.ReservationResponseEmpty;
 import com.riwi.workShop.api.dto.response.UserResponse;
 import com.riwi.workShop.domain.entities.Loan;
 import com.riwi.workShop.domain.entities.Reservation;
@@ -12,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-07-25T06:39:59-0500",
+    date = "2024-07-25T08:36:55-0500",
     comments = "version: 1.6.0.Beta2, compiler: Eclipse JDT (IDE) 3.39.0.v20240620-1855, environment: Java 17.0.11 (Eclipse Adoptium)"
 )
 @Component
@@ -26,18 +28,12 @@ public class UserMapperImpl implements UserMapper {
 
         UserResponse.UserResponseBuilder userResponse = UserResponse.builder();
 
+        userResponse.loan( loanListToLoanResponseEmptyList( userEntity.getLoan() ) );
+        userResponse.reservation( reservationListToReservationResponseEmptyList( userEntity.getReservation() ) );
         userResponse.email( userEntity.getEmail() );
         userResponse.fullName( userEntity.getFullName() );
         userResponse.id( userEntity.getId() );
-        List<Loan> list = userEntity.getLoan();
-        if ( list != null ) {
-            userResponse.loan( new ArrayList<Loan>( list ) );
-        }
         userResponse.password( userEntity.getPassword() );
-        List<Reservation> list1 = userEntity.getReservation();
-        if ( list1 != null ) {
-            userResponse.reservation( new ArrayList<Reservation>( list1 ) );
-        }
         userResponse.role( userEntity.getRole() );
         userResponse.username( userEntity.getUsername() );
 
@@ -59,5 +55,59 @@ public class UserMapperImpl implements UserMapper {
         userEntity.username( getUser.getUsername() );
 
         return userEntity.build();
+    }
+
+    protected LoanResponseEmpty loanToLoanResponseEmpty(Loan loan) {
+        if ( loan == null ) {
+            return null;
+        }
+
+        LoanResponseEmpty.LoanResponseEmptyBuilder loanResponseEmpty = LoanResponseEmpty.builder();
+
+        loanResponseEmpty.id( loan.getId() );
+        loanResponseEmpty.loanDate( loan.getLoanDate() );
+        loanResponseEmpty.returnDate( loan.getReturnDate() );
+        loanResponseEmpty.status( loan.getStatus() );
+
+        return loanResponseEmpty.build();
+    }
+
+    protected List<LoanResponseEmpty> loanListToLoanResponseEmptyList(List<Loan> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<LoanResponseEmpty> list1 = new ArrayList<LoanResponseEmpty>( list.size() );
+        for ( Loan loan : list ) {
+            list1.add( loanToLoanResponseEmpty( loan ) );
+        }
+
+        return list1;
+    }
+
+    protected ReservationResponseEmpty reservationToReservationResponseEmpty(Reservation reservation) {
+        if ( reservation == null ) {
+            return null;
+        }
+
+        ReservationResponseEmpty.ReservationResponseEmptyBuilder reservationResponseEmpty = ReservationResponseEmpty.builder();
+
+        reservationResponseEmpty.reservationDate( reservation.getReservationDate() );
+        reservationResponseEmpty.status( reservation.isStatus() );
+
+        return reservationResponseEmpty.build();
+    }
+
+    protected List<ReservationResponseEmpty> reservationListToReservationResponseEmptyList(List<Reservation> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<ReservationResponseEmpty> list1 = new ArrayList<ReservationResponseEmpty>( list.size() );
+        for ( Reservation reservation : list ) {
+            list1.add( reservationToReservationResponseEmpty( reservation ) );
+        }
+
+        return list1;
     }
 }

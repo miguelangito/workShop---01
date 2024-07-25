@@ -8,8 +8,12 @@ import org.springframework.stereotype.Service;
 import com.riwi.workShop.api.dto.request.ReservationRequest;
 import com.riwi.workShop.api.dto.response.ReservationResponse;
 import com.riwi.workShop.config.mapper.ReservationMapper;
+import com.riwi.workShop.domain.entities.Book;
 import com.riwi.workShop.domain.entities.Reservation;
+import com.riwi.workShop.domain.entities.UserEntity;
+import com.riwi.workShop.domain.repositories.BookRepository;
 import com.riwi.workShop.domain.repositories.ReservationRepository;
+import com.riwi.workShop.domain.repositories.UserRepository;
 import com.riwi.workShop.infrastructure.abstract_service.IReservationService;
 
 import lombok.AllArgsConstructor;
@@ -22,11 +26,25 @@ public class ReservationService implements IReservationService{
     private final ReservationMapper mapper;
 
     @Autowired
+    private final BookRepository bookRepository;
+
+    @Autowired
+    private final UserRepository userRepository;
+
+    @Autowired
     private final ReservationRepository repository;
 
     @Override
     public ReservationResponse create(ReservationRequest request) {
+        Book book = this.bookRepository.findById(request.getBookId()).orElseThrow(() -> new RuntimeException("Book not found"));
+        
+        UserEntity user = this.userRepository.findById(request.getUserId()).orElseThrow(() -> new RuntimeException("User not found"));
+        
         Reservation reservation = this.mapper.reservationRequestToEntity(request);
+        
+        reservation.setReservationBook(book);
+        reservation.setReservationUserEntity(user);
+
         return this.mapper.reservationToReservationResponse(this.repository.save(reservation));
     }
 

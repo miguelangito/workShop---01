@@ -3,16 +3,12 @@ package com.riwi.workShop.config.mapper;
 import com.riwi.workShop.api.dto.request.BookRequest;
 import com.riwi.workShop.api.dto.response.BookResponse;
 import com.riwi.workShop.domain.entities.Book;
-import com.riwi.workShop.domain.entities.Loan;
-import com.riwi.workShop.domain.entities.Reservation;
-import java.util.ArrayList;
-import java.util.List;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-07-08T12:23:42-0500",
+    date = "2024-07-25T08:36:47-0500",
     comments = "version: 1.6.0.Beta2, compiler: Eclipse JDT (IDE) 3.39.0.v20240620-1855, environment: Java 17.0.11 (Eclipse Adoptium)"
 )
 @Component
@@ -30,15 +26,7 @@ public class BookMapperImpl implements BookMapper {
         bookResponse.genre( book.getGenre() );
         bookResponse.id( book.getId() );
         bookResponse.isbn( book.getIsbn() );
-        List<Loan> list = book.getLoan();
-        if ( list != null ) {
-            bookResponse.loan( new ArrayList<Loan>( list ) );
-        }
         bookResponse.publicationYear( book.getPublicationYear() );
-        List<Reservation> list1 = book.getReservation();
-        if ( list1 != null ) {
-            bookResponse.reservation( new ArrayList<Reservation>( list1 ) );
-        }
         bookResponse.title( book.getTitle() );
 
         return bookResponse.build();

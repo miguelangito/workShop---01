@@ -8,8 +8,12 @@ import org.springframework.stereotype.Service;
 import com.riwi.workShop.api.dto.request.LoanRequest;
 import com.riwi.workShop.api.dto.response.LoanResponse;
 import com.riwi.workShop.config.mapper.LoanMapper;
+import com.riwi.workShop.domain.entities.Book;
 import com.riwi.workShop.domain.entities.Loan;
+import com.riwi.workShop.domain.entities.UserEntity;
+import com.riwi.workShop.domain.repositories.BookRepository;
 import com.riwi.workShop.domain.repositories.LoanRepository;
+import com.riwi.workShop.domain.repositories.UserRepository;
 import com.riwi.workShop.infrastructure.abstract_service.ILoanService;
 
 import lombok.AllArgsConstructor;
@@ -22,12 +26,26 @@ public class LoanService implements ILoanService{
     private final LoanRepository loanRepository;
 
     @Autowired
+    private final UserRepository userRepository;
+
+    @Autowired
+    private final BookRepository bookRepository;
+
+    @Autowired
     private final LoanMapper loanMapper;
 
 
     @Override
     public LoanResponse create(LoanRequest request) {
+        Book book = this.bookRepository.findById(request.getBookId()).orElseThrow(() -> new RuntimeException("Book not found"));
+        
+        UserEntity user = this.userRepository.findById(request.getUserId()).orElseThrow(() -> new RuntimeException("User not found"));
+
         Loan loan = this.loanMapper.loanRequestToEntity(request);
+
+        loan.setLoanBook(book);
+        loan.setLoanUserEntity(user);
+
         return loanMapper.loanToLoanResponse(this.loanRepository.save(loan));
     }
 
