@@ -16,7 +16,7 @@ public interface ReservationMapper {
 
     Reservation reservationRequestToEntity(ReservationRequest reservationRequest);
 
-    List<ReservationResponse> toGetReservationList(List<Reservation> reservationList);
+    // List<ReservationResponse> toGetReservationList(List<Reservation> reservationList);
 
-    List<Reservation> toEntityList(List<ReservationResponse> getReservationList);
+    // List<Reservation> toEntityList(List<ReservationResponse> getReservationList);
 }

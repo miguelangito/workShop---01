@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-07-08T10:47:19-0500",
+    date = "2024-07-25T06:39:59-0500",
     comments = "version: 1.6.0.Beta2, compiler: Eclipse JDT (IDE) 3.39.0.v20240620-1855, environment: Java 17.0.11 (Eclipse Adoptium)"
 )
 @Component
@@ -57,59 +57,6 @@ public class UserMapperImpl implements UserMapper {
         userEntity.password( getUser.getPassword() );
         userEntity.role( getUser.getRole() );
         userEntity.username( getUser.getUsername() );
-
-        return userEntity.build();
-    }
-
-    @Override
-    public List<UserResponse> toGetUserList(List<UserEntity> userList) {
-        if ( userList == null ) {
-            return null;
-        }
-
-        List<UserResponse> list = new ArrayList<UserResponse>( userList.size() );
-        for ( UserEntity userEntity : userList ) {
-            list.add( userToUserResponse( userEntity ) );
-        }
-
-        return list;
-    }
-
-    @Override
-    public List<UserEntity> toEntityList(List<UserResponse> getUserList) {
-        if ( getUserList == null ) {
-            return null;
-        }
-
-        List<UserEntity> list = new ArrayList<UserEntity>( getUserList.size() );
-        for ( UserResponse userResponse : getUserList ) {
-            list.add( userResponseToUserEntity( userResponse ) );
-        }
-
-        return list;
-    }
-
-    protected UserEntity userResponseToUserEntity(UserResponse userResponse) {
-        if ( userResponse == null ) {
-            return null;
-        }
-
-        UserEntity.UserEntityBuilder userEntity = UserEntity.builder();
-
-        userEntity.email( userResponse.getEmail() );
-        userEntity.fullName( userResponse.getFullName() );
-        userEntity.id( userResponse.getId() );
-        List<Loan> list = userResponse.getLoan();
-        if ( list != null ) {
-            userEntity.loan( new ArrayList<Loan>( list ) );
-        }
-        userEntity.password( userResponse.getPassword() );
-        List<Reservation> list1 = userResponse.getReservation();
-        if ( list1 != null ) {
-            userEntity.reservation( new ArrayList<Reservation>( list1 ) );
-        }
-        userEntity.role( userResponse.getRole() );
-        userEntity.username( userResponse.getUsername() );
 
         return userEntity.build();
     }

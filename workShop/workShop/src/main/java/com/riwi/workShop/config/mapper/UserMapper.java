@@ -17,7 +17,7 @@ public interface UserMapper {
 
     UserEntity UserRequestToEntity(UserRequest getUser);
 
-    List<UserResponse> toGetUserList(List<UserEntity> userList);
+    // List<UserResponse> toGetUserList(List<UserEntity> userList);
 
-    List<UserEntity> toEntityList(List<UserResponse> getUserList);
+    // List<UserEntity> toEntityList(List<UserResponse> getUserList);
 }

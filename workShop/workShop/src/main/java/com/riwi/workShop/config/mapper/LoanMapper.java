@@ -16,7 +16,7 @@ public interface LoanMapper {
 
     Loan loanRequestToEntity(LoanRequest loanRequest);
 
-    List<LoanResponse> toGetLoanList(List<Loan> loanList);
+    // List<LoanResponse> toGetLoanList(List<Loan> loanList);
 
-    List<Loan> toEntityList(List<LoanResponse> getLoanList);
+    // List<Loan> toEntityList(List<LoanResponse> getLoanList);
 }

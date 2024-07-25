@@ -16,8 +16,8 @@ public interface BookMapper {
 
     Book bookRequestToEntity(BookRequest bookRequest);
 
-    List<BookResponse> toGetBookList(List<Book> bookList);
+    // List<BookResponse> toGetBookList(List<Book> bookList);
 
-    List<Book> toEntityList(List<BookResponse> getBookList);
+    // List<Book> toEntityList(List<BookResponse> getBookList);
 
 }
