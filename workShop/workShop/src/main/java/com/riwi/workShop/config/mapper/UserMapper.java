@@ -23,8 +23,4 @@ public interface UserMapper {
     @Mapping(target = "reservation", ignore = true)
     @Mapping(target = "id", ignore = true)
     UserEntity UserRequestToEntity(UserRequest getUser);
-
-    // List<UserResponse> toGetUserList(List<UserEntity> userList);
-
-    // List<UserEntity> toEntityList(List<UserResponse> getUserList);
 }

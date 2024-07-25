@@ -19,8 +19,4 @@ public interface LoanMapper {
     @Mapping(target = "user.id", source = "loanUserEntity.id")
     @Mapping(target = "book.id", source = "loanBook.id")
     LoanResponse loanToLoanResponse(Loan loan);
-
-    // List<LoanResponse> toGetLoanList(List<Loan> loanList);
-
-    // List<Loan> toEntityList(List<LoanResponse> getLoanList);
 }

@@ -19,8 +19,4 @@ public interface ReservationMapper {
     @Mapping(target = "user.id", source = "reservationUserEntity.id") 
     @Mapping(target = "book.id", source = "reservationBook.id") 
     ReservationResponse reservationToReservationResponse(Reservation reservation);
-    
-    // List<ReservationResponse> toGetReservationList(List<Reservation> reservationList);
-
-    // List<Reservation> toEntityList(List<ReservationResponse> getReservationList);
 }

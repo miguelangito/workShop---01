@@ -19,9 +19,4 @@ public interface BookMapper {
     @Mapping(target = "reservation", ignore = true)
     @Mapping(target = "id", ignore = true)
     Book bookRequestToEntity(BookRequest bookRequest);
-
-    // List<BookResponse> toGetBookList(List<Book> bookList);
-
-    // List<Book> toEntityList(List<BookResponse> getBookList);
-
 }
